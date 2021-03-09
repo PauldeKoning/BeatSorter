@@ -1,4 +1,4 @@
-﻿using BeatSorter.Models;
+﻿using BeatSorter.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ namespace BeatSorter.Repositories.Interfaces
 {
     public interface IBeatmapRepository
     {
-        IEnumerable<Beatmap> GetBeatmaps();
-        Beatmap GetBeatmapById(int beatmapId);
-        int InsertBeatmap(Beatmap beatmap);
-        void DeleteBeatmap(Beatmap beatmap);
-        void UpdateBeatmap(Beatmap beatmap);
+        IEnumerable<BeatmapEntity> GetBeatmaps();
+        BeatmapEntity GetBeatmapById(int beatmapId);
+        int InsertBeatmap(BeatmapEntity beatmap);
+        void DeleteBeatmap(BeatmapEntity beatmap);
+        void UpdateBeatmap(BeatmapEntity beatmap);
     }
 }

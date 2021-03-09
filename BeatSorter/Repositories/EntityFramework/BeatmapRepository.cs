@@ -1,4 +1,4 @@
-﻿using BeatSorter.Models;
+﻿using BeatSorter.Entities;
 using BeatSorter.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,30 +17,30 @@ namespace BeatSorter.Repositories.EntityFramework
             this.context = context;
         }
 
-        public void DeleteBeatmap(Beatmap beatmap)
+        public void DeleteBeatmap(BeatmapEntity beatmap)
         {
             context.Beatmap.Remove(beatmap);
             context.SaveChanges();
         }
 
-        public Beatmap GetBeatmapById(int beatmapId)
+        public BeatmapEntity GetBeatmapById(int beatmapId)
         {
-            return context.Beatmap.Find(beatmapId);
+            return context.Beatmap.Include(b => b.Uploader).Include(b => b.Difficulties).First(b => b.Id == beatmapId);
         }
 
-        public IEnumerable<Beatmap> GetBeatmaps()
+        public IEnumerable<BeatmapEntity> GetBeatmaps()
         {
             return context.Beatmap.ToList();
         }
 
-        public int InsertBeatmap(Beatmap beatmap)
+        public int InsertBeatmap(BeatmapEntity beatmap)
         {
             context.Beatmap.Add(beatmap);
             context.SaveChanges();
             return beatmap.Id;
         }
 
-        public void UpdateBeatmap(Beatmap beatmap)
+        public void UpdateBeatmap(BeatmapEntity beatmap)
         {
             context.Entry(beatmap).State = EntityState.Modified;
             context.SaveChanges();

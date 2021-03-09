@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BeatSorter.Models
+namespace BeatSorter.Entities
 {
-    public class Difficulty
+    public class DifficultyEntity
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; } // Easy - Normal - Hard - Expert - ExpertPlus
@@ -28,7 +27,7 @@ namespace BeatSorter.Models
 
         public int Obstacles { get; set; }
 
-        public Beatmap Beatmap { get; set; }
+        public BeatmapEntity Beatmap { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using BeatSorter.Repositories.Interfaces;
 using BeatSorter.Util.Converters;
-using BeatSorter.ViewModels;
+using BeatSorter.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BeatSorter.ViewModels;
 
 namespace BeatSorter.Controllers
 {
@@ -24,8 +25,8 @@ namespace BeatSorter.Controllers
 
         public IActionResult Index()
         {
-            BeatmapViewModel beatmap = BeatmapConverter.toViewModel(beatmapRepository.GetBeatmapById(1));
-            return View(beatmap);
+            IndexViewModel viewModel = CreateViewModel(BeatmapConverter.ToModel(beatmapRepository.GetBeatmapById(1)));
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
@@ -37,6 +38,19 @@ namespace BeatSorter.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IndexViewModel CreateViewModel(Beatmap beatmap)
+        {
+            return new IndexViewModel()
+            {
+                Title = beatmap.Title,
+                BPM = beatmap.BPM,
+                LevelAuthor = beatmap.LevelAuthor,
+                Uploader = beatmap.Uploader,
+                DifficultyNames = beatmap.DifficultyNames,
+                DifficultyTypes = beatmap.DifficultyTypes
+            };
         }
     }
 }
