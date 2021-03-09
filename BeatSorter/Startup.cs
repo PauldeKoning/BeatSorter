@@ -1,4 +1,6 @@
-using BeatSorter.Data;
+using BeatSorter.Models;
+using BeatSorter.Repositories.EntityFramework;
+using BeatSorter.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,8 @@ namespace BeatSorter
             services.AddRazorPages();
 
             services.AddControllersWithViews();
+
+            services.AddScoped<IBeatmapRepository, BeatmapRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

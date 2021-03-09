@@ -2,9 +2,64 @@
     ViewData["Title"] = "Homepage";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
+<div class="container">
     
+    <div class="card my-4">
+        <div class="row no-gutters">
+            <div class="img-square-wrapper col-lg-3 col-md-5">
+                <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg" alt="Card image cap">
+            </div>
+            <div class="col-lg-9 col-md-7 container-fluid d-flex">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-body">
+                            <h4 class="card-title">@Model.Title</h4>
+                            <table class="text-muted">
+                                <tr>
+                                    <td>Uploaded by:</td>
+                                    <td class="pl-3"><b>D_Doggo</b></td>
+                                </tr>
+                                <tr>
+                                    <td>Created by:</td>
+                                    <td class="pl-3"><b>@Model.LevelAuthor</b></td>
+                                </tr>
+                                <tr>
+                                    <td>BPM:</td>
+                                    <td class="pl-3"><b>@Model.BPM</b></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Read more</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="align-self-end col-12">
+                        <h5 class="px-2">
+                            <span class="p-2 badge badge-success">Easy</span>
+                            <span class="p-2 badge badge-secondary">Medium</span>
+                            <span class="p-2 badge badge-primary">Hard</span>
+                            <span class="p-2 badge badge-danger">Expert</span>
+                            <span class="p-2 badge text-white" style="background-color: #8f48db;">Expert+</span>
+
+                            <div class="float-right">
+                                <span class="p-2 badge badge-info">360 Degree</span>
+                                <span class="p-2 badge badge-info">90 Degree</span>
+                                <span class="p-2 badge badge-info">One Saber</span>
+                            </div>
+                        </h5>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="p-0 card-footer">
+            <div class="row px-3">
+                <button class="col-4 btn btn-primary">Download</button>
+                <button class="col-4 btn btn-light">OneClick™</button>
+                <button class="col-4 btn btn-light">Add to playlist</button>
+            </div>
+        </div>
+    </div>
+   
 </div>

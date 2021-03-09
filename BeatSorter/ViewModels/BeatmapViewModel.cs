@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BeatSorter.Data
+namespace BeatSorter.ViewModels
 {
-    public class Beatmap
+    public class BeatmapViewModel
     {
+
         public int Id { get; set; }
 
         public string BeatSaverId { get; set; }
@@ -35,10 +35,6 @@ namespace BeatSorter.Data
         public int BPM { get; set; }
 
         public int Duration { get; set; }
-
-        public ICollection<Difficulty> Difficulties { get; set; }
-
-        public ICollection<UploaderBeatmap> UploaderBeatmaps { get; set; }
 
     }
 }

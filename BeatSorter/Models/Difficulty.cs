@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BeatSorter.Data
+namespace BeatSorter.Models
 {
     public class Difficulty
     {

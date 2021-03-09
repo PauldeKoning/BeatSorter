@@ -1,4 +1,6 @@
-﻿using BeatSorter.Models;
+﻿using BeatSorter.Repositories.Interfaces;
+using BeatSorter.Util.Converters;
+using BeatSorter.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +14,18 @@ namespace BeatSorter.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBeatmapRepository beatmapRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBeatmapRepository beatmapRepository)
         {
             _logger = logger;
+            this.beatmapRepository = beatmapRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            BeatmapViewModel beatmap = BeatmapConverter.toViewModel(beatmapRepository.GetBeatmapById(1));
+            return View(beatmap);
         }
 
         public IActionResult Privacy()

@@ -1,6 +1,6 @@
 using System;
 
-namespace BeatSorter.Models
+namespace BeatSorter.ViewModels
 {
     public class ErrorViewModel
     {
