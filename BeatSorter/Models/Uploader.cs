@@ -14,7 +14,7 @@ namespace BeatSorter.Models
 
         public string Username { get; set; }
 
-        public ICollection<UploaderBeatmap> UploaderBeatmaps { get; set; }
+        public ICollection<Beatmap> Beatmaps { get; set; }
 
     }
 }

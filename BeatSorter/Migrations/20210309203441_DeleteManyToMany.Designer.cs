@@ -3,14 +3,16 @@ using System;
 using BeatSorter.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BeatSorter.Migrations
 {
     [DbContext(typeof(BeatSorterContext))]
-    partial class BeatSorterContextModelSnapshot : ModelSnapshot
+    [Migration("20210309203441_DeleteManyToMany")]
+    partial class DeleteManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

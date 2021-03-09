@@ -26,21 +26,10 @@ namespace BeatSorter.Models
                 .HasMany(b => b.Difficulties)
                 .WithOne(d => d.Beatmap);
 
-            modelBuilder.Entity<UploaderBeatmap>()
-                .HasKey(ub => new { ub.UploaderId, ub.BeatmapId  });
+            modelBuilder.Entity<Beatmap>()
+                .HasOne(b => b.Uploader)
+                .WithMany(u => u.Beatmaps);
 
-            modelBuilder.Entity<UploaderBeatmap>()
-                .HasOne(ub => ub.Uploader)
-                .WithMany(u => u.UploaderBeatmaps)
-                .HasForeignKey(ub => ub.UploaderId);
-
-            modelBuilder.Entity<UploaderBeatmap>()
-                .HasOne(ub => ub.Beatmap)
-                .WithMany(b => b.UploaderBeatmaps)
-                .HasForeignKey(ub => ub.BeatmapId);
-
-            
-            
         }
 
     }

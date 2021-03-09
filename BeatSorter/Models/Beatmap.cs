@@ -38,7 +38,7 @@ namespace BeatSorter.Models
 
         public ICollection<Difficulty> Difficulties { get; set; }
 
-        public ICollection<UploaderBeatmap> UploaderBeatmaps { get; set; }
+        public Uploader Uploader { get; set; }
 
     }
 }
