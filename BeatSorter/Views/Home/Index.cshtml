@@ -35,16 +35,16 @@
                     </div>
                     <div class="align-self-end col-12">
                         <h5 class="float-left pl-2">
-                            @foreach (var item in Model.DifficultyNames)
+                            @foreach (var name in Model.DifficultyNames)
                             {
-                                <span class="p-2 badge badge-@Model.GetDifficultyColour(item)">@Model.CapitalizeFirst(item)</span>
+                                <span class="p-2 badge @Model.GetDifficultyColourTagName(name)">@Model.CapitalizeFirst(name)</span>
                             }
                         </h5>
 
                         <h5 class="float-right pr-2">
-                            @foreach (var item in Model.DifficultyTypes)
+                            @foreach (var type in Model.DifficultyTypes)
                             {
-                                <span class="p-2 badge badge-info">@Model.CapitalizeFirst(item)</span>
+                                <span class="p-2 badge @Model.GetDifficultyColourTagName(type)">@Model.CapitalizeFirst(type)</span>
                             }
                         </h5>
 
@@ -93,16 +93,16 @@
                 </div>
                 <div>
                     <h5 class="float-left pl-2">
-                        @foreach (var item in Model.DifficultyNames)
+                        @foreach (var name in Model.DifficultyNames)
                         {
-                        <span class="p-2 badge badge-@Model.GetDifficultyColour(item)">@Model.CapitalizeFirst(item)</span>
+                        <span class="p-2 badge @Model.GetDifficultyColourTagName(name)">@Model.CapitalizeFirst(name)</span>
                         }
                     </h5>
 
                     <h5 class="float-right pr-2">
-                        @foreach (var item in Model.DifficultyTypes)
+                        @foreach (var type in Model.DifficultyTypes)
                         {
-                        <span class="p-2 badge badge-info">@Model.CapitalizeFirst(item)</span>
+                        <span class="p-2 badge @Model.GetDifficultyColourTagName(type)">@Model.CapitalizeFirst(type)</span>
                         }
                     </h5>
                 </div>

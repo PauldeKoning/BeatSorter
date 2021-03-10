@@ -1,4 +1,4 @@
-﻿using BeatSorter.Entities;
+﻿using BeatSorterDatabase.Entities;
 using BeatSorter.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

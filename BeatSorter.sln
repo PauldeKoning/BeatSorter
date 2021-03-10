@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeatSorter", "BeatSorter\BeatSorter.csproj", "{74081EBF-AE31-4AA1-9A3D-C27870D269DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeatSorter", "BeatSorter\BeatSorter.csproj", "{74081EBF-AE31-4AA1-9A3D-C27870D269DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeatSorterDatabase", "BeatSorterDatabase\BeatSorterDatabase.csproj", "{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{74081EBF-AE31-4AA1-9A3D-C27870D269DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74081EBF-AE31-4AA1-9A3D-C27870D269DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74081EBF-AE31-4AA1-9A3D-C27870D269DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

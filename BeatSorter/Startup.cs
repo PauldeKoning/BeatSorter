@@ -1,4 +1,4 @@
-using BeatSorter.Entities;
+using BeatSorterDatabase.Entities;
 using BeatSorter.Repositories.EntityFramework;
 using BeatSorter.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;

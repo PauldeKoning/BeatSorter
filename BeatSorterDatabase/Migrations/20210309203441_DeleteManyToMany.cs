@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BeatSorter.Migrations
+namespace BeatSorterDatabase.Migrations
 {
     public partial class DeleteManyToMany : Migration
     {

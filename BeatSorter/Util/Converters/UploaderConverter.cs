@@ -1,4 +1,4 @@
-﻿using BeatSorter.Entities;
+﻿using BeatSorterDatabase.Entities;
 using BeatSorter.Models;
 using System;
 using System.Collections.Generic;

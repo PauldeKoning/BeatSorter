@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BeatSorter.Migrations
+namespace BeatSorterDatabase.Migrations
 {
     public partial class init : Migration
     {

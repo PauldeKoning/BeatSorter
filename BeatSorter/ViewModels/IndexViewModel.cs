@@ -8,29 +8,54 @@ namespace BeatSorter.ViewModels
 {
     public class IndexViewModel
     {
+        private readonly Beatmap beatmap;
+
+        public IndexViewModel(Beatmap beatmap)
+        {
+            this.beatmap = beatmap;
+            Title = beatmap.Title;
+            BPM = beatmap.BPM;
+            LevelAuthor = beatmap.LevelAuthor;
+            Uploader = beatmap.Uploader;
+        }
+
         public string Title { get; set; }
         public int BPM { get; set; }
         public string LevelAuthor { get; set; }
         public Uploader Uploader { get; set; }
-        public List<string> DifficultyNames { get; set; }
-        public List<string> DifficultyTypes { get; set; }
 
-        public string GetDifficultyColour(string difficulty)
+        public List<string> DifficultyNames
+        {
+            get
+            {
+                return beatmap.DifficultyNames;
+            }
+        }
+
+        public List<string> DifficultyTypes
+        {
+            get
+            {
+                return beatmap.DifficultyTypes;
+            }
+        }
+
+        public string GetDifficultyColourTagName(string difficulty)
         {
             switch(difficulty.ToLower())
             {
                 case "easy":
-                    return "success";
+                    return "badge-success";
                 case "normal":
-                    return "secondary";
+                    return "badge-secondary";
                 case "hard":
-                    return "primary";
+                    return "badge-primary";
                 case "expert":
-                    return "danger";
+                    return "badge-danger";
                 case "expert+":
-                    return "dark";
+                    return "badge-dark";
                 default:
-                    return "info";
+                    return "badge-info";
             }
         }
 

@@ -14,18 +14,16 @@ namespace BeatSorter.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IBeatmapRepository beatmapRepository;
 
-        public HomeController(ILogger<HomeController> logger, IBeatmapRepository beatmapRepository)
+        public HomeController(IBeatmapRepository beatmapRepository)
         {
-            _logger = logger;
             this.beatmapRepository = beatmapRepository;
         }
 
         public IActionResult Index()
         {
-            IndexViewModel viewModel = CreateViewModel(BeatmapConverter.ToModel(beatmapRepository.GetBeatmapById(1)));
+            IndexViewModel viewModel = new IndexViewModel(BeatmapConverter.ToModel(beatmapRepository.GetBeatmapById(1)));
             return View(viewModel);
         }
 
@@ -38,19 +36,6 @@ namespace BeatSorter.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        private IndexViewModel CreateViewModel(Beatmap beatmap)
-        {
-            return new IndexViewModel()
-            {
-                Title = beatmap.Title,
-                BPM = beatmap.BPM,
-                LevelAuthor = beatmap.LevelAuthor,
-                Uploader = beatmap.Uploader,
-                DifficultyNames = beatmap.DifficultyNames,
-                DifficultyTypes = beatmap.DifficultyTypes
-            };
         }
     }
 }
