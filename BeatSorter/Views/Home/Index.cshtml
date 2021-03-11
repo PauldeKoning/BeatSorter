@@ -1,121 +1,18 @@
-﻿@{
+﻿@model BeatSorter.ViewModels.BeatmapViewModel
+@{
     ViewData["Title"] = "Homepage";
 }
 
-<div class="container">
-    <!--
-    <div class="card my-4">
-        <div class="row no-gutters">
-            <div class="img-square-wrapper col-lg-3 col-md-5">
-                <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg" alt="Card image cap">
-            </div>
-            <div class="col-lg-9 col-md-7 container-fluid d-flex">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-body">
-                            <h4 class="card-title">@Model.Title</h4>
-                            <table class="text-muted">
-                                <tr>
-                                    <td>Uploaded by:</td>
-                                    <td class="pl-3"><b>@Model.Uploader.Username</b></td>
-                                </tr>
-                                <tr>
-                                    <td>Created by:</td>
-                                    <td class="pl-3"><b>@Model.LevelAuthor</b></td>
-                                </tr>
-                                <tr>
-                                    <td>BPM:</td>
-                                    <td class="pl-3"><b>@Model.BPM</b></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#">Read more</a></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="align-self-end col-12">
-                        <h5 class="float-left pl-2">
-                            @foreach (var name in Model.DifficultyNames)
-                            {
-                                <span class="p-2 badge @Model.GetDifficultyColourTagName(name)">@Model.CapitalizeFirst(name)</span>
-                            }
-                        </h5>
-
-                        <h5 class="float-right pr-2">
-                            @foreach (var type in Model.DifficultyTypes)
-                            {
-                                <span class="p-2 badge @Model.GetDifficultyColourTagName(type)">@Model.CapitalizeFirst(type)</span>
-                            }
-                        </h5>
-
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="p-0 card-footer">
-            <div class="row px-3">
-                <button class="col-4 btn btn-primary">Download</button>
-                <button class="col-4 btn btn-light">OneClick™</button>
-                <button class="col-4 btn btn-light">Add to playlist</button>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-9 col-md-12 col-lg-9">
+        @await Html.PartialAsync("_SongView", Model)
     </div>
-        -->
 
-    <div class="card my-4">
-        <div class="row no-gutters">
-            <div class="img-square-wrapper col-lg-3 col-md-5">
-                <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg" alt="Card image cap">
-            </div>
-            <div class="col-lg-9 col-md-7 d-flex flex-column">
-                <div class="card-body">
-                    <h4 class="card-title">Die Aerzte - Maenner Sind Schweine</h4>
-                    <table class="text-muted">
-                        <tr>
-                            <td>Uploaded by:</td>
-                            <td class="pl-3"><b>D_Doggo</b></td>
-                        </tr>
-                        <tr>
-                            <td>Created by:</td>
-                            <td class="pl-3"><b>santaklau & JohnnyDee</b></td>
-                        </tr>
-                        <tr>
-                            <td>BPM:</td>
-                            <td class="pl-3"><b>94</b></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Read more</a></td>
-                        </tr>
-                    </table>
-                </div>
-                <div>
-                    <h5 class="float-left pl-2">
-                        @foreach (var name in Model.DifficultyNames)
-                        {
-                        <span class="p-2 badge @Model.GetDifficultyColourTagName(name)">@Model.CapitalizeFirst(name)</span>
-                        }
-                    </h5>
-
-                    <h5 class="float-right pr-2">
-                        @foreach (var type in Model.DifficultyTypes)
-                        {
-                        <span class="p-2 badge @Model.GetDifficultyColourTagName(type)">@Model.CapitalizeFirst(type)</span>
-                        }
-                    </h5>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="p-0 card-footer">
-            <div class="row px-3">
-                <button class="col-4 btn btn-primary">Download</button>
-                <button class="col-4 btn btn-light">OneClick™</button>
-                <button class="col-4 btn btn-light">Add to playlist</button>
-            </div>
+    <div class="col-md-3 d-sm-none d-lg-block">
+        <div class="border w-100 card my-4" style="height: 400px">
+            Sidebar with filters
         </div>
     </div>
 </div>
+
+

@@ -69,3 +69,38 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.badge-not-present {
+    opacity: 0.1;
+}
+
+.badge-difficulty-type {
+    transition: 0.1s;
+}
+
+    .badge-difficulty-type:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+.badge-not-clicked {
+    opacity: 0.6;
+}
+
+.img-button-overlay {
+    position: relative;
+}
+
+.display-bottom-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.card-clickable img {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}

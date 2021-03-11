@@ -27,6 +27,8 @@ namespace BeatSorter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine("Starting and testing");
+
             services.AddDbContext<BeatSorterContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddRazorPages();
@@ -34,6 +36,8 @@ namespace BeatSorter
             services.AddControllersWithViews();
 
             services.AddScoped<IBeatmapRepository, BeatmapRepository>();
+
+            Console.WriteLine("Starting and testing 2");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

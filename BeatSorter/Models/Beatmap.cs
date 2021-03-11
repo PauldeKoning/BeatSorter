@@ -42,28 +42,25 @@ namespace BeatSorter.Models
 
         public List<Difficulty> Difficulties { get; set; }
 
-        public List<string> DifficultyNames
+        public List<string> DifficultyTypes
         {
             get
             {
-                var difficultyNames = new List<string>();
-
-                Difficulties.ForEach(d => { if (!difficultyNames.Contains(d.Name)) difficultyNames.Add(d.Name); });
-
-                return difficultyNames;
-            }
-        }
-
-        public List<string> DifficultyTypes
-        {
-            get 
-            {
                 var difficultyTypes = new List<string>();
 
-                Difficulties.ForEach(d => { if (!difficultyTypes.Contains(d.Name)) difficultyTypes.Add(d.Type); });
+                Difficulties.ForEach(d => { if (!difficultyTypes.Contains(d.Type)) difficultyTypes.Add(d.Type); });
 
                 return difficultyTypes;
             }
+        }
+
+        public List<string> GetDifficultiesByType(string type)
+        {
+            var difficultyNames = new List<string>();
+
+            Difficulties.ForEach(d => { if (!difficultyNames.Contains(d.Name) && d.Type == type) difficultyNames.Add(d.Name); });
+
+            return difficultyNames;
         }
 
     }

@@ -23,7 +23,7 @@ namespace BeatSorter.Controllers
 
         public IActionResult Index()
         {
-            IndexViewModel viewModel = new IndexViewModel(BeatmapConverter.ToModel(beatmapRepository.GetBeatmapById(1)));
+            BeatmapViewModel viewModel = new BeatmapViewModel(BeatmapConverter.ToModel(beatmapRepository.GetBeatmapById(1)));
             return View(viewModel);
         }
 

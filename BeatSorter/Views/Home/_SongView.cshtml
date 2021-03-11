@@ -1,0 +1,104 @@
+﻿@model BeatSorter.ViewModels.BeatmapViewModel
+<div class="card my-4 card-clickable">
+    <div class="row no-gutters">
+        <div class="img-square-wrapper col-lg-4 col-md-7">
+            <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg" alt="Card image cap">
+        </div>
+        <div class="col-lg-8 col-md-5 d-flex flex-column">
+            <div class="card-body">
+                <h4 class="card-title"><a href="#">Die Aerzte - Maenner Sind Schweine</a></h4>
+                <table class="text-muted">
+                    <tr>
+                        <td>Uploaded by:</td>
+                        <td class="pl-3"><b><a href="#">D_Doggo</a></b></td>
+                    </tr>
+                    <tr>
+                        <td>Created by:</td>
+                        <td class="pl-3"><b>santaklau & JohnnyDee</b></td>
+                    </tr>
+                    <tr>
+                        <td>BPM:</td>
+                        <td class="pl-3"><b>94</b></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h5 class="pl-2">
+                    @{ bool isFirstDifficultyType = false; }
+
+                    @if (Model.DifficultyTypes.Contains("standard"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("standard")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("standard")))'>Standard</button>
+                        isFirstDifficultyType = true;
+                    }
+                    @if (Model.DifficultyTypes.Contains("onesaber"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("onesaber")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("onesaber")))'>One Saber</button>
+                        isFirstDifficultyType = true;
+                    }
+                    @if (Model.DifficultyTypes.Contains("360"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("360")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("360")))'>360&deg;</button>
+                        isFirstDifficultyType = true;
+                    }
+                    @if (Model.DifficultyTypes.Contains("90"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("90")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90")))'>90&deg;</button>
+                        isFirstDifficultyType = true;
+                    }
+                    @if (Model.DifficultyTypes.Contains("lightshow"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("lightshow")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lightshow")))'>Lightshow</button>
+                        isFirstDifficultyType = true;
+                    }
+                </h5>
+            </div>
+            <div>
+                <h5 class="pl-2">
+                    <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success">Easy</span>
+                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary">Medium</span>
+                    <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary">Hard</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger">Expert</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white" style="background-color: #8f48db;">Expert+</span>
+                </h5>
+            </div>
+            <div class="display-bottom-right m-2">
+                <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="QInstall&trade;">Q&trade;</button><br>
+                <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="Add to playlist"><i class="fas fa-list"></i></button><br>
+                <button class="btn btn-primary"><i class="fas fa-download"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(".SongView_@(Model.Id)").on("click", function () {
+        $(".SongView_@(Model.Id)_difficulty").addClass("badge-not-present");
+        $(this).data('difficulties').forEach(d => {
+            $("#SongView_@(Model.Id)_difficulty_" + d).removeClass("badge-not-present");
+        });
+        $(".SongView_@(Model.Id)").addClass("badge-not-clicked");
+        $(this).removeClass("badge-not-clicked");
+    });
+
+    $(".SongView_@(Model.Id)").hover(function () {
+        $(this).data('original-elements-selected', (function () {
+            var elements = [...$(".SongView_@(Model.Id)_difficulty").not(".badge-not-present")];
+            for (let i = 0; i < elements.length; i++) elements[i] = elements[i].id.substr(elements[i].id.indexOf("difficulty_") + 11);
+            return elements;
+        })());
+
+        $(".SongView_@(Model.Id)_difficulty").addClass("badge-not-present");
+        $(this).data('difficulties').forEach(d => {
+            $("#SongView_@(Model.Id)_difficulty_" + d).removeClass("badge-not-present");
+        });
+    }, function () {
+        $(".SongView_@(Model.Id)_difficulty").addClass("badge-not-present");
+        $(this).data('original-elements-selected').forEach(d => {
+            $("#SongView_@(Model.Id)_difficulty_" + d).removeClass("badge-not-present");
+        });
+    });
+
+    $(".SongView_@(Model.Id)")[0].click();
+</script>
