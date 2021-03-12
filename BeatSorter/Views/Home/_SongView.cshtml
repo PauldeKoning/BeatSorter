@@ -94,6 +94,7 @@
             $("#SongView_@(Model.Id)_difficulty_" + d).removeClass("badge-not-present");
         });
     }, function () {
+        if (!$(this).hasClass("badge-not-clicked")) return;
         $(".SongView_@(Model.Id)_difficulty").addClass("badge-not-present");
         $(this).data('original-elements-selected').forEach(d => {
             $("#SongView_@(Model.Id)_difficulty_" + d).removeClass("badge-not-present");
