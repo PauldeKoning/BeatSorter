@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BeatSorterDatabase.Entities
 {
+    [Table("difficulty")]
     public class DifficultyEntity
     {
         public int Id { get; set; }

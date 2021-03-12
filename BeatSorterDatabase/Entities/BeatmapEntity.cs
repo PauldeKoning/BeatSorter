@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BeatSorterDatabase.Entities
 {
+    [Table("beatmap")]
     public class BeatmapEntity
     {
         public int Id { get; set; }

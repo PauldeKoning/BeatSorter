@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeatSorter", "BeatSorter\BeatSorter.csproj", "{74081EBF-AE31-4AA1-9A3D-C27870D269DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeatSorterDatabase", "BeatSorterDatabase\BeatSorterDatabase.csproj", "{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeatSorterDatabase", "BeatSorterDatabase\BeatSorterDatabase.csproj", "{7A1B705B-A83E-4C8A-A636-9DBAEF0FBA27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BAFCAEDE-6D78-4A06-B3B4-D053B609EF3E}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
