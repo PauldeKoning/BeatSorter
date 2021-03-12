@@ -1,10 +1,10 @@
 ﻿@model BeatSorter.ViewModels.BeatmapViewModel
-<div class="card my-4 card-clickable">
+<div class="card my-4 bg-light box-shadow-card box-shadow-card-hover card-clickable">
     <div class="row no-gutters">
-        <div class="img-square-wrapper col-lg-4 col-md-7">
-            <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg" alt="Card image cap">
+        <div class="img-square-wrapper col-lg-5 col-xl-4 col-md-7">
+            <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg">
         </div>
-        <div class="col-lg-8 col-md-5 d-flex flex-column">
+        <div class="col-lg-7 col-xl-8 col-md-5 d-flex flex-column">
             <div class="card-body">
                 <h4 class="card-title"><a href="#">Die Aerzte - Maenner Sind Schweine</a></h4>
                 <table class="text-muted">
@@ -24,32 +24,25 @@
             </div>
             <div>
                 <h5 class="pl-2">
-                    @{ bool isFirstDifficultyType = false; }
-
                     @if (Model.DifficultyTypes.Contains("standard"))
                     {
-                        <button id="SongView_@(Model.Id)_@("standard")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("standard")))'>Standard</button>
-                        isFirstDifficultyType = true;
+                        <button id="SongView_@(Model.Id)_@("standard")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("standard")))'>Standard</button>
                     }
                     @if (Model.DifficultyTypes.Contains("onesaber"))
                     {
-                        <button id="SongView_@(Model.Id)_@("onesaber")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("onesaber")))'>One Saber</button>
-                        isFirstDifficultyType = true;
+                        <button id="SongView_@(Model.Id)_@("onesaber")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("onesaber")))'>One Saber</button>
                     }
                     @if (Model.DifficultyTypes.Contains("360"))
                     {
-                        <button id="SongView_@(Model.Id)_@("360")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("360")))'>360&deg;</button>
-                        isFirstDifficultyType = true;
+                        <button id="SongView_@(Model.Id)_@("360")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("360")))'>360&deg;</button>
                     }
                     @if (Model.DifficultyTypes.Contains("90"))
                     {
-                        <button id="SongView_@(Model.Id)_@("90")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90")))'>90&deg;</button>
-                        isFirstDifficultyType = true;
+                        <button id="SongView_@(Model.Id)_@("90")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90")))'>90&deg;</button>
                     }
                     @if (Model.DifficultyTypes.Contains("lightshow"))
                     {
-                        <button id="SongView_@(Model.Id)_@("lightshow")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type @{if(!isFirstDifficultyType) Html.Raw("badge-clicked"); }" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lightshow")))'>Lightshow</button>
-                        isFirstDifficultyType = true;
+                        <button id="SongView_@(Model.Id)_@("lightshow")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lightshow")))'>Lightshow</button>
                     }
                 </h5>
             </div>
