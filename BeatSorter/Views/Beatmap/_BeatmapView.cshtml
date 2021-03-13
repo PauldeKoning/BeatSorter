@@ -2,7 +2,7 @@
 <div class="card mb-4 bg-light box-shadow box-shadow-card-hover card-clickable">
     <div class="row no-gutters">
         <div class="img-square-wrapper col-lg-5 col-xl-4 col-sm-12 col-md-6">
-            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg">
+            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg" onerror="this.src = this.src.replace('jpg', 'png');">
         </div>
         <div class="col-lg-7 col-xl-8 col-sm-12 col-md-6 d-flex flex-column">
             <div class="card-body">
@@ -42,7 +42,7 @@
                     }
                     @if (Model.DifficultyTypes.Contains("noarrows"))
                     {
-                        <button id="SongView_@(Model.Id)_@("noarrows")" class="SongView_@(Model.Id) btn btn-outline-danger btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("noarrows")))'>No Arrows</button>
+                        <button id="SongView_@(Model.Id)_@("noarrows")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("noarrows")))'>No Arrows</button>
                     }
                     @if (Model.DifficultyTypes.Contains("lightshow"))
                     {
@@ -66,19 +66,19 @@
             <div class="display-bottom-right m-2 d-none d-sm-block d-md-none d-lg-block">
                 <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="QInstall&trade;">Q&trade;</button><br>
                 <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="Add to playlist"><i class="fas fa-list"></i></button><br>
-                <button class="btn btn-primary"><i class="fas fa-download"></i></button>
+                <button class="btn btn-primary" onclick="window.open('https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).zip');"><i class="fas fa-download"></i></button>
             </div>
         </div>
 
         <div class="display-top-left m-2 d-sm-none d-md-block d-lg-none">
             <button class="btn btn-primary"><i class="fas fa-download"></i></button>
             <button class="btn btn-dark mb-1 btn-sm">Q&trade;</button>
-            <button class="btn btn-dark mb-1 btn-sm"><i class="fas fa-list"></i></button>
+            <button class="btn btn-dark mb-1 btn-sm" onclick="window.open('https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).zip');"><i class="fas fa-list"></i></button>
         </div>
     </div>
 </div>
 
-@if (Model.DifficultyTypes.Contains("standard") && Model.DifficultyTypes.Count != 1)
+@if ((Model.DifficultyTypes.Contains("standard") && Model.DifficultyTypes.Count != 1) || !Model.DifficultyTypes.Contains("standard"))
 { //For performance reasons, only include code when there is a custom gamemode available
     <script>
     $(".SongView_@(Model.Id)").on("click", function () {
