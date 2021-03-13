@@ -13,7 +13,7 @@ namespace BeatSorterDatabase.Entities
 
         public string BeatSaverId { get; set; }
 
-        public string Hash { get; set; }
+        public string Hash { get; set; } //TODO store image extension (or image URL) as both jpg and png are used
 
         public string Key { get; set; }
 
