@@ -1,30 +1,30 @@
 ﻿@model BeatSorter.ViewModels.BeatmapViewModel
-<div class="card my-4 bg-light box-shadow box-shadow-card-hover card-clickable">
+<div class="card mb-4 bg-light box-shadow box-shadow-card-hover card-clickable">
     <div class="row no-gutters">
         <div class="img-square-wrapper col-lg-5 col-xl-4 col-md-7">
-            <img class="w-100" src="https://beatsaver.com/cdn/15358/831ef774447b29d622a3d6e74b385c3866c95ce3.jpg">
+            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg">
         </div>
         <div class="col-lg-7 col-xl-8 col-md-5 d-flex flex-column">
             <div class="card-body">
-                <h4 class="card-title"><a href="#">Die Aerzte - Maenner Sind Schweine</a></h4>
+                <h4 class="card-title"><a href="#">@Model.Title</a></h4>
                 <table class="text-muted">
                     <tr>
                         <td>Uploaded by:</td>
-                        <td class="pl-3"><b><a href="#">D_Doggo</a></b></td>
+                        <td class="pl-3"><b><a href="#">@Model.Uploader.Username</a></b></td>
                     </tr>
                     <tr>
                         <td>Created by:</td>
-                        <td class="pl-3"><b>santaklau & JohnnyDee</b></td>
+                        <td class="pl-3"><b>@Model.LevelAuthor</b></td>
                     </tr>
                     <tr>
                         <td>BPM:</td>
-                        <td class="pl-3"><b>94</b></td>
+                        <td class="pl-3"><b>@Model.BPM</b></td>
                     </tr>
                 </table>
             </div>
             <div>
                 <h5 class="pl-2">
-                    @if (Model.DifficultyTypes.Contains("standard"))
+                    @if (Model.DifficultyTypes.Contains("standard") && Model.DifficultyTypes.Count != 1)
                     {
                         <button id="SongView_@(Model.Id)_@("standard")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("standard")))'>Standard</button>
                     }
@@ -40,32 +40,47 @@
                     {
                         <button id="SongView_@(Model.Id)_@("90")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90")))'>90&deg;</button>
                     }
+                    @if (Model.DifficultyTypes.Contains("noarrows"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("noarrows")" class="SongView_@(Model.Id) btn btn-outline-danger btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("noarrows")))'>No Arrows</button>
+                    }
                     @if (Model.DifficultyTypes.Contains("lightshow"))
                     {
-                        <button id="SongView_@(Model.Id)_@("lightshow")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lightshow")))'>Lightshow</button>
+                        <button id="SongView_@(Model.Id)_@("lightshow")" class="SongView_@(Model.Id) btn btn-outline-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lightshow")))'>Lightshow</button>
+                    }
+                    @if (Model.DifficultyTypes.Contains("lawless"))
+                    {
+                        <button id="SongView_@(Model.Id)_@("lawless")" class="SongView_@(Model.Id) btn btn-outline-danger btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("lawless")))'>Lawless</button>
                     }
                 </h5>
             </div>
             <div>
                 <h5 class="pl-2">
-                    <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success">Easy</span>
-                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary">Medium</span>
-                    <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary">Hard</span>
-                    <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger">Expert</span>
-                    <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white" style="background-color: #8f48db;">Expert+</span>
+                    <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success @(Model.StandardContainsDifficulty("easy") ? "" : "badge-not-present")">Easy</span>
+                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary @(Model.StandardContainsDifficulty("medium") ? "" : "badge-not-present")">Medium</span>
+                    <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary @(Model.StandardContainsDifficulty("hard") ? "" : "badge-not-present")">Hard</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger @(Model.StandardContainsDifficulty("expert") ? "" : "badge-not-present")">Expert</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white @(Model.StandardContainsDifficulty("expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>
                 </h5>
             </div>
-            <div class="display-bottom-right m-2">
+            <div class="display-bottom-right m-2 d-none d-sm-block">
                 <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="QInstall&trade;">Q&trade;</button><br>
                 <button class="btn btn-outline-dark mb-1 btn-sm w-100" data-toggle="tooltip" data-placement="left" title="Add to playlist"><i class="fas fa-list"></i></button><br>
                 <button class="btn btn-primary"><i class="fas fa-download"></i></button>
             </div>
         </div>
 
+        <div class="display-top-left m-2 d-sm-none">
+            <button class="btn btn-primary"><i class="fas fa-download"></i></button>
+            <button class="btn btn-dark mb-1 btn-sm">Q&trade;</button>
+            <button class="btn btn-dark mb-1 btn-sm"><i class="fas fa-list"></i></button>
+        </div>
     </div>
 </div>
 
-<script>
+@if (Model.DifficultyTypes.Contains("standard") && Model.DifficultyTypes.Count != 1)
+{ //For performance reasons, only include code when there is a custom gamemode available
+    <script>
     $(".SongView_@(Model.Id)").on("click", function () {
         $(".SongView_@(Model.Id)_difficulty").addClass("badge-not-present");
         $(this).data('difficulties').forEach(d => {
@@ -95,4 +110,6 @@
     });
 
     $(".SongView_@(Model.Id)")[0].click();
-</script>
+    </script>
+}
+

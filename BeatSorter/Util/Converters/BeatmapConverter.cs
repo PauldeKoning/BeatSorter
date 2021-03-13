@@ -56,5 +56,14 @@ namespace BeatSorter.Util.Converters
             return viewModel;
         }
 
+        public static List<Beatmap> ToModel(List<BeatmapEntity> beatmaps)
+        {
+            var list = new List<Beatmap>();
+
+            beatmaps.ForEach(b => list.Add(ToModel(b)));
+
+            return list;
+        }
+
     }
 }

@@ -9,6 +9,8 @@ namespace BeatSorter.Repositories.Interfaces
     public interface IBeatmapRepository
     {
         IEnumerable<BeatmapEntity> GetBeatmaps();
+        IEnumerable<BeatmapEntity> GetBeatmapsPaginated(int amountPerPage, int page);
+        int GetSelectCount();
         BeatmapEntity GetBeatmapById(int beatmapId);
         int InsertBeatmap(BeatmapEntity beatmap);
         void DeleteBeatmap(BeatmapEntity beatmap);

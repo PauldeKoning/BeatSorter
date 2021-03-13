@@ -16,6 +16,8 @@ namespace BeatSorter.ViewModels
             LevelAuthor = beatmap.LevelAuthor;
             Uploader = beatmap.Uploader;
             DifficultyTypes = beatmap.DifficultyTypes;
+            Hash = beatmap.Hash;
+            Key = beatmap.Key;
 
             Difficulties = new Dictionary<string, List<string>>();
             DifficultyTypes.ForEach(d => Difficulties.Add(d, beatmap.GetDifficultiesByType(d)));
@@ -25,6 +27,9 @@ namespace BeatSorter.ViewModels
         public string Title { get; set; }
         public int BPM { get; set; }
         public string LevelAuthor { get; set; }
+        public string Hash { get; set; }
+        public string Key { get; set; }
+
         public Uploader Uploader { get; set; }
 
         public Dictionary<string, List<string>> Difficulties { get; set; }
@@ -36,7 +41,18 @@ namespace BeatSorter.ViewModels
             return new List<string>();
         }
 
+        //TODO Add support for 'unsupported types', these should be displayed after supported types
         public List<string> DifficultyTypes { get; set; }
+
+        //Following function manually adds the 'badge-not-present' class to the BeatmapView difficulties if Standard is the only DifficultyType
+        public bool StandardContainsDifficulty(string difficultyName)
+        {
+            if (DifficultyTypes.Count == 1 && 
+                DifficultyTypes.Contains("standard") && //First two check if manual check is necessary or if javascript is handling it
+                GetAvailableDifficulties("standard").Contains(difficultyName))
+                return true;
+            return false;
+        }
 
         public string CapitalizeFirst(string str)
         {

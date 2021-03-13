@@ -1,18 +1,7 @@
-﻿@model BeatSorter.ViewModels.BeatmapViewModel
-@{
+﻿@{
     ViewData["Title"] = "Homepage";
 }
 
-<div class="row">
-    <div class="col-md-9 col-md-12 col-lg-9">
-        @await Html.PartialAsync("_SongView", Model)
-    </div>
-
-    <div class="col-md-3 d-sm-none d-lg-block">
-        <div class="border w-100 card my-4 bg-light box-shadow" style="height: 400px">
-            Sidebar with filters
-        </div>
-    </div>
-</div>
+<h1>Welcome to BeatSorter!</h1>
 
 

@@ -1,0 +1,68 @@
+﻿@model BeatSorter.ViewModels.BeatmapListViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-12">
+        <ul class="pagination">
+            @if (Model.Page > 0)
+            {
+                <li class="page-item">@Html.ActionLink("<", "List", new { page = Model.Page - 1 }, new { @class = "page-link" })</li>
+            }
+            @if (Model.PageAmount > 1)
+            {
+                for (
+                    int i = Model.PaginationStart;
+                    i < Model.PaginationEnd;
+                    i++)
+                {
+                    <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")">@Html.ActionLink((i + 1).ToString(), "List", new { page = i }, new { @class = "page-link" })</li>
+                }
+            }
+            @if (Model.Page <= Model.PageAmount)
+            {
+                <li class="page-item">@Html.ActionLink(">", "List", new { page = Model.Page + 1 }, new { @class = "page-link" })</li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-9 col-md-12 col-lg-9">
+
+        @foreach (var beatmap in Model.Beatmaps)
+        {
+            @await Html.PartialAsync("_BeatmapView", beatmap);
+        }
+    </div>
+
+    <div class="col-md-3 d-sm-none d-lg-block">
+        <div class="border w-100 card mb-4 bg-light box-shadow" style="height: 400px">
+            Sidebar with filters
+        </div>
+    </div>
+
+    <div class="col-12">
+        <ul class="pagination">
+            @if (Model.Page > 0)
+            {
+                <li class="page-item">@Html.ActionLink("<", "List", new { page = Model.Page - 1 }, new { @class = "page-link" })</li>
+            }
+            @if (Model.PageAmount > 1)
+            {
+                for (
+                    int i = Model.PaginationStart;
+                    i < Model.PaginationEnd;
+                    i++)
+                {
+                    <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")">@Html.ActionLink((i + 1).ToString(), "List", new { page = i }, new { @class = "page-link" })</li>
+                }
+            }
+            @if (Model.Page <= Model.PageAmount)
+            {
+                <li class="page-item">@Html.ActionLink(">", "List", new { page = Model.Page + 1 }, new { @class = "page-link" })</li>
+            }
+        </ul>
+    </div>
+</div>
+
+

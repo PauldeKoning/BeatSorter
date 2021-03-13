@@ -25,7 +25,29 @@ namespace BeatSorter.Repositories.EntityFramework
 
         public BeatmapEntity GetBeatmapById(int beatmapId)
         {
-            return context.Beatmap.Include(b => b.Uploader).Include(b => b.Difficulties).First(b => b.Id == beatmapId);
+            return context.Beatmap
+                .Include(b => b.Uploader)
+                .Include(b => b.Difficulties)
+                .FirstOrDefault(b => b.Id == beatmapId);
+        }
+
+        public IEnumerable<BeatmapEntity> GetBeatmapsPaginated(int amountPerPage, int page)
+        {
+            if (page < 0) return new List<BeatmapEntity>();
+
+            return context.Beatmap
+                .Include(b => b.Uploader)
+                .Include(b => b.Difficulties)
+                .Skip(page * amountPerPage)
+                .Take(amountPerPage)
+                .ToList();
+        }
+        public int GetSelectCount()
+        {
+            return context.Beatmap
+                .Include(b => b.Uploader)
+                .Include(b => b.Difficulties)
+                .Count();
         }
 
         public IEnumerable<BeatmapEntity> GetBeatmaps()
