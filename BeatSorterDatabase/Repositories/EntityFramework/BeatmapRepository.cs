@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BeatSorterDatabase.Util;
 
 namespace BeatSorter.Repositories.EntityFramework
 {
@@ -31,28 +32,30 @@ namespace BeatSorter.Repositories.EntityFramework
                 .FirstOrDefault(b => b.Id == beatmapId);
         }
 
-        public IEnumerable<BeatmapEntity> GetBeatmapsPaginated(int amountPerPage, int page)
+        public List<BeatmapEntity> GetBeatmapsPaginated(int amountPerPage, int page)
         {
             if (page < 0) return new List<BeatmapEntity>();
 
-            return context.Beatmap
+            var test = context.Beatmap
                 .Include(b => b.Uploader)
-                .Include(b => b.Difficulties)
-                .Skip(page * amountPerPage)
-                .Take(amountPerPage)
-                .ToList();
-        }
-        public int GetSelectCount()
-        {
-            return context.Beatmap
-                .Include(b => b.Uploader)
-                .Include(b => b.Difficulties)
-                .Count();
+                .Include(b => b.Difficulties).AsQueryable();
+
+            test = test.Skip(page * amountPerPage)
+                .Take(amountPerPage);
+
+            return test.ToList();
+
         }
 
-        public IEnumerable<BeatmapEntity> GetBeatmaps()
+        //TODO optimize this, make it one database call with two returning values
+        public int GetSelectCount(IBeatmapQueryBuilder queryBuilder)
         {
-            return context.Beatmap.ToList();
+            return queryBuilder.BuildBeatmapListCountWithContext(context).Count();
+        }
+
+        public List<BeatmapEntity> GetBeatmaps(IBeatmapQueryBuilder queryBuilder)
+        {
+            return queryBuilder.BuildBeatmapListWithContext(context).ToList();
         }
 
         public int InsertBeatmap(BeatmapEntity beatmap)

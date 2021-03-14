@@ -1,0 +1,99 @@
+﻿@model BeatSorter.ViewModels.BeatmapViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+@if (Model == null)
+{
+    <h1>Beatmap not found!</h1>
+}
+else
+{
+<div class="row">
+    <div class="col-lg-4 col-md-5">
+        <div class="card bg-light box-shadow">
+            <div class="img-square-wrapper">
+                <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg" 
+                     onerror="this.src = this.src.replace('jpg', 'png');">
+            </div>
+            <div class="card-body">
+                <table>
+                    <tr>
+                        <td>Uploaded by:</td>
+                        <td class="pl-3"><b>@Html.ActionLink(Model.Uploader.Username, "Detail", "Uploader", new { id = Model.Id })</b></td>
+                    </tr>
+                    <tr>
+                        <td>Created by:</td>
+                        <td class="pl-3"><b>@Model.LevelAuthor</b></td>
+                    </tr>
+                    <tr>
+                        <td>Artist:</td>
+                        <td class="pl-3"><b>@Model.SongAuthor</b></td>
+                    </tr>
+                    <tr>
+                        <td>Duration:</td>
+                        <td class="pl-3"><b>@Model.DurationFormatted</b></td>
+                    </tr>
+                    <tr>
+                        <td>BPM:</td>
+                        <td class="pl-3"><b>@Model.BPM</b></td>
+                    </tr>
+                </table>
+                <button class="btn btn-outline-dark my-2 w-100">QuickInstall&trade;</button><br>
+                <button class="btn btn-outline-dark mb-2 w-100">Add To Playlist</button><br>
+                <button class="btn btn-primary w-100" onclick="window.open('https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).zip');">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8 col-md-7">
+        <div class="mt-3 d-md-none"></div>
+        <div class="card bg-light box-shadow">
+            <div class="card-header border-0">
+                <h2 class="card-title m-0">@Model.Title</h2>
+            </div>
+        </div>
+
+        <div class="card bg-light mt-3 box-shadow">
+            <div class="card-header">
+                <h4 class="card-title m-0">Description</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.Description.Length == 0)
+                {
+                    <p class="m-0"><b>No description provided</b></p>
+                }
+                else
+                {
+                    @Html.Raw(Model.DescriptionFormatted)
+                }
+            </div>
+        </div>
+
+        <div class="card bg-light mt-3 box-shadow">
+            <div class="card-header">
+                <h4 class="card-title m-0">Available Difficulties</h4>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-borderless m-0 text-center">
+                    @foreach (var difficulty in Model.Difficulties)
+                    {
+                        <tr>
+                            <th style="vertical-align: middle"><h5 class="m-0">@Model.CapitalizeFirst(difficulty.Key)</h5></th>
+                            <td>
+                                <h5 class="m-0">
+                                    <span class="p-2 badge badge-success @(Model.ContainsDifficulty(difficulty.Key, "easy") ? "" : "badge-not-present")">Easy</span>
+                                    <span class="p-2 badge badge-secondary @(Model.ContainsDifficulty(difficulty.Key, "medium") ? "" : "badge-not-present")">Medium</span>
+                                    <span class="p-2 badge badge-primary @(Model.ContainsDifficulty(difficulty.Key, "hard") ? "" : "badge-not-present")">Hard</span>
+                                    <span class="p-2 badge badge-danger @(Model.ContainsDifficulty(difficulty.Key, "expert") ? "" : "badge-not-present")">Expert</span>
+                                    <span class="p-2 badge badge-success text-white @(Model.ContainsDifficulty(difficulty.Key, "expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>
+                                </h5>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}

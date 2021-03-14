@@ -2,19 +2,29 @@
 <div class="card mb-4 bg-light box-shadow box-shadow-card-hover card-clickable">
     <div class="row no-gutters">
         <div class="img-square-wrapper col-lg-5 col-xl-4 col-sm-12 col-md-6">
-            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg" onerror="this.src = this.src.replace('jpg', 'png');">
+            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg" 
+                 onerror="this.src = this.src.replace('jpg', 'png');"
+                 onclick="window.location.href='./Detail/@(Model.Id)'">
         </div>
         <div class="col-lg-7 col-xl-8 col-sm-12 col-md-6 d-flex flex-column">
             <div class="card-body">
-                <h4 class="card-title"><a href="#">@Model.Title</a></h4>
+                <h4 class="card-title">@Html.ActionLink(Model.Title, "Detail", "Beatmap", new { id = Model.Id })</h4>
                 <table class="text-muted">
                     <tr>
                         <td>Uploaded by:</td>
-                        <td class="pl-3"><b><a href="#">@Model.Uploader.Username</a></b></td>
+                        <td class="pl-3"><b>@Html.ActionLink(Model.Uploader.Username, "Detail", "Uploader", new { id = Model.Id })</b></td>
                     </tr>
                     <tr>
                         <td>Created by:</td>
                         <td class="pl-3"><b>@Model.LevelAuthor</b></td>
+                    </tr>
+                    <tr>
+                        <td>Artist:</td>
+                        <td class="pl-3"><b>@Model.SongAuthor</b></td>
+                    </tr>
+                    <tr>
+                        <td>Duration:</td>
+                        <td class="pl-3"><b>@Model.DurationFormatted</b></td>
                     </tr>
                     <tr>
                         <td>BPM:</td>
@@ -56,11 +66,11 @@
             </div>
             <div>
                 <h5 class="pl-2">
-                    <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success @(Model.StandardContainsDifficulty("easy") ? "" : "badge-not-present")">Easy</span>
-                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary @(Model.StandardContainsDifficulty("medium") ? "" : "badge-not-present")">Medium</span>
-                    <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary @(Model.StandardContainsDifficulty("hard") ? "" : "badge-not-present")">Hard</span>
-                    <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger @(Model.StandardContainsDifficulty("expert") ? "" : "badge-not-present")">Expert</span>
-                    <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white @(Model.StandardContainsDifficulty("expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>
+                    <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success @(Model.ContainsDifficulty("standard", "easy") ? "" : "badge-not-present")">Easy</span>
+                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary @(Model.ContainsDifficulty("standard", "medium") ? "" : "badge-not-present")">Medium</span>
+                    <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary @(Model.ContainsDifficulty("standard", "hard") ? "" : "badge-not-present")">Hard</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger @(Model.ContainsDifficulty("standard", "expert") ? "" : "badge-not-present")">Expert</span>
+                    <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white @(Model.ContainsDifficulty("standard", "expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>
                 </h5>
             </div>
             <div class="display-bottom-right m-2 d-none d-sm-block d-md-none d-lg-block">
@@ -72,8 +82,8 @@
 
         <div class="display-top-left m-2 d-sm-none d-md-block d-lg-none">
             <button class="btn btn-primary"><i class="fas fa-download"></i></button>
-            <button class="btn btn-dark mb-1 btn-sm">Q&trade;</button>
-            <button class="btn btn-dark mb-1 btn-sm" onclick="window.open('https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).zip');"><i class="fas fa-list"></i></button>
+            <button class="btn btn-secondary mb-1 btn-sm">Q&trade;</button>
+            <button class="btn btn-secondary mb-1 btn-sm" onclick="window.open('https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).zip');"><i class="fas fa-list"></i></button>
         </div>
     </div>
 </div>

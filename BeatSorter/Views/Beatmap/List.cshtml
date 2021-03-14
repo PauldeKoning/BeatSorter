@@ -1,4 +1,5 @@
 ﻿@model BeatSorter.ViewModels.BeatmapListViewModel
+@using BeatSorter.Util.View
 @{
     ViewData["Title"] = "List";
 }
@@ -10,7 +11,7 @@
             <ul class="pagination">
                 @if (Model.Page > 0)
                 {
-                    <li class="page-item">@Html.ActionLink("<", "List", new { page = Model.Page - 1 }, new { @class = "page-link" })</li>
+                    <li class="page-item"><a href="@Url.Current(new { page = Model.Page - 1 })" class="page-link">&lt;</a></li>
                 }
                 @{
                     for (
@@ -18,12 +19,12 @@
                        i < Model.PaginationEnd;
                        i++)
                     {
-                        <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")">@Html.ActionLink((i + 1).ToString(), "List", new { page = i }, new { @class = "page-link" })</li>
+                        <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")"><a href="@Url.Current(new { page = i })" class="page-link">@(i + 1)</a></li>
                     }
                 }
-                @if (Model.Page <= Model.PageAmount)
+                @if (Model.Page + 1 < Model.PageAmount)
                 {
-                    <li class="page-item">@Html.ActionLink(">", "List", new { page = Model.Page + 1 }, new { @class = "page-link" })</li>
+                    <li class="page-item"><a href="@Url.Current(new { page = Model.Page + 1 })" class="page-link">&gt;</a></li>
                 }
             </ul>
         </div>
@@ -34,11 +35,29 @@
         {
             @await Html.PartialAsync("_BeatmapView", beatmap);
         }
+
+        @if (Model.Beatmaps.Count == 0)
+        {
+            <h2>No beatmaps matched the filter</h2>
+        }
     </div>
 
     <div class="col-md-3 d-none d-lg-block">
-        <div class="border w-100 card mb-4 bg-light box-shadow" style="height: 400px">
-            Sidebar with filters
+        <div class="border w-100 card mb-4 bg-light box-shadow">
+            <div class="card-body">
+                <form method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Song Title" name="songTitle" value="@Context.Request.Query["songTitle"]">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Artist Name" name="songAuthor" value="@Context.Request.Query["songAuthor"]">
+                    </div>
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-labeled btn-secondary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
@@ -48,21 +67,20 @@
             <ul class="pagination">
                 @if (Model.Page > 0)
                 {
-                    <li class="page-item">@Html.ActionLink("<", "List", new { page = Model.Page - 1 }, new { @class = "page-link" })</li>
+                    <li class="page-item"><a href="@Url.Current(new { page = Model.Page - 1 })" class="page-link">&lt;</a></li>
                 }
-                @if (Model.PageAmount > 1)
-                {
+                @{
                     for (
-                        int i = Model.PaginationStart;
-                        i < Model.PaginationEnd;
-                        i++)
+                       int i = Model.PaginationStart;
+                       i < Model.PaginationEnd;
+                       i++)
                     {
-                        <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")">@Html.ActionLink((i + 1).ToString(), "List", new { page = i }, new { @class = "page-link" })</li>
+                        <li class="page-item@(i == Model.Page ? " font-weight-bold" : "")"><a href="@Url.Current(new { page = i })" class="page-link">@(i + 1)</a></li>
                     }
                 }
-                @if (Model.Page <= Model.PageAmount)
+                @if (Model.Page + 1 < Model.PageAmount)
                 {
-                    <li class="page-item">@Html.ActionLink(">", "List", new { page = Model.Page + 1 }, new { @class = "page-link" })</li>
+                    <li class="page-item"><a href="@Url.Current(new { page = Model.Page + 1 })" class="page-link">&gt;</a></li>
                 }
             </ul>
         </div>
