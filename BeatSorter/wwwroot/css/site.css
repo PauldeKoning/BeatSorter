@@ -119,3 +119,7 @@ a {
 .box-shadow-card-hover:hover {    
     box-shadow: 0 0.25rem 0.75rem rgb(255 255 255 / 5%)
 }
+
+tr {
+    line-height: 1.3em;
+}
