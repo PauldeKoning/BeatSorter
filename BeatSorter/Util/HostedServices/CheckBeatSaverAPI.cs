@@ -15,7 +15,7 @@ namespace BeatSorter.Util.HostedServices
     {
         private Timer _timer;
 
-        private IServiceScopeFactory serviceScopeFactory;
+        private readonly IServiceScopeFactory serviceScopeFactory;
 
         public CheckBeatSaverAPI(IServiceScopeFactory serviceScopeFactory)
         {
@@ -32,15 +32,13 @@ namespace BeatSorter.Util.HostedServices
 
         private void DoWork(object state)
         {
-            using (var scope = serviceScopeFactory.CreateScope())
-            {
-                var beatmapRepository = scope.ServiceProvider.GetRequiredService<IBeatmapRepository>();
-                var  difficultyRepository = scope.ServiceProvider.GetRequiredService<IDifficultyRepository>();
-                var uploaderRepository = scope.ServiceProvider.GetRequiredService<IUploaderRepository>();
+            using var scope = serviceScopeFactory.CreateScope();
+            var beatmapRepository = scope.ServiceProvider.GetRequiredService<IBeatmapRepository>();
+            var difficultyRepository = scope.ServiceProvider.GetRequiredService<IDifficultyRepository>();
+            var uploaderRepository = scope.ServiceProvider.GetRequiredService<IUploaderRepository>();
 
-                var api = new BeatSaverAPI(beatmapRepository, difficultyRepository, uploaderRepository);
-                api.RetrieveLatestSongs();
-            }
+            var api = new BeatSaverAPI(beatmapRepository, difficultyRepository, uploaderRepository);
+            api.RetrieveLatestSongs();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

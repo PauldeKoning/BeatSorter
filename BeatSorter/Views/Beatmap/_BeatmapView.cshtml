@@ -1,9 +1,15 @@
 ﻿@model BeatSorter.ViewModels.BeatmapViewModel
 <div class="card mb-4 bg-light box-shadow box-shadow-card-hover card-clickable">
+    <div class="display-beyond-top-left bg-light box-shadow border">
+        <button class="btn border-0 btn-outline-success btn-square w-100"><i class="fa fa-caret-up"></i></button>
+        <div class="p-1 py-2 text-center w-100 font-weight-bold">69</div>
+        <button class="btn border-0 btn-outline-danger btn-square w-100"><i class="fa fa-caret-down"></i></button>
+    </div>
+
     <div class="row no-gutters">
         <div class="img-square-wrapper col-lg-5 col-xl-4 col-sm-12 col-md-6">
-            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg" 
-                 onerror="this.src = this.src.replace('jpg', 'png');"
+            <img class="w-100" src="https://beatsaver.com/cdn/@(Model.Key)/@(Model.Hash).jpg"
+                 onerror="this.onerror = () => { this.onerror = () => {this.src = 'https://static.thenounproject.com/png/3653194-200.png'; }; this.src=this.src.replace('png', 'JPG' ); }; this.src=this.src.replace('jpg', 'png' );"
                  onclick="window.location.href='./Detail/@(Model.Id)'">
         </div>
         <div class="col-lg-7 col-xl-8 col-sm-12 col-md-6 d-flex flex-column">

@@ -87,7 +87,7 @@ namespace BeatSorterDatabase.External
                             .ToLower(),
                             Type = characteristics.name
                             .ToLower()
-                            .Replace("one saber", "onsaber")
+                            .Replace("one saber", "onesaber")
                             .Replace("no arrows", "noarrows"),
                             Duration = difficultyData.Value.duration,
                             Length = (int)Math.Round(difficultyData.Value.length),
