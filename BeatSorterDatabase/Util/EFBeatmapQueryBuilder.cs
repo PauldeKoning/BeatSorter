@@ -37,20 +37,20 @@ namespace BeatSorterDatabase.Util
         private IEnumerable<BeatmapEntity> BuildList(BeatSorterContext context)
         {
             var query = context.Beatmap
-                .Include(b => b.Uploader)
+                .Include(b => b.Uploader).AsQueryable()
                 .Include(b => b.Difficulties).AsQueryable();
 
             if (songAuthor != null)
             {
-                query = query.Where(b => b.SongAuthor.Contains(songAuthor)).AsQueryable();
+                query = query.AsQueryable().Where(b => b.SongAuthor.Contains(songAuthor)).AsQueryable();
             }
 
             if (songTitle != null)
             {
-                query = query.Where(b => b.Title.Contains(songTitle)).AsQueryable();
+                query = query.AsQueryable().Where(b => b.Title.Contains(songTitle)).AsQueryable();
             }
 
-            return query;
+            return query.AsQueryable();
         }
 
         public IEnumerable<BeatmapEntity> BuildBeatmapListWithContext(BeatSorterContext context)
@@ -59,15 +59,15 @@ namespace BeatSorterDatabase.Util
 
             if (paginationAmountPerPage != null && paginationPage != null)
             {
-                query = query.Skip((int)paginationPage * (int)paginationAmountPerPage).Take((int)paginationAmountPerPage).AsQueryable();
+                query = query.AsQueryable().Skip((int)paginationPage * (int)paginationAmountPerPage).AsQueryable().Take((int)paginationAmountPerPage).AsQueryable();
             }
 
-            return query;
+            return query.AsQueryable();
         }
 
         public IEnumerable<BeatmapEntity> BuildBeatmapListCountWithContext(BeatSorterContext context)
         {
-            return BuildList(context);
+            return BuildList(context).AsQueryable();
         }
     }
 

@@ -1,5 +1,5 @@
 ﻿using BeatSorterDatabase.Entities;
-using BeatSorter.Repositories.Interfaces;
+using BeatSorterDatabase.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BeatSorterDatabase.Util;
 
-namespace BeatSorter.Repositories.EntityFramework
+namespace BeatSorterDatabase.Repositories.EntityFramework
 {
     public class BeatmapRepository : IBeatmapRepository
     {
@@ -47,10 +47,10 @@ namespace BeatSorter.Repositories.EntityFramework
 
         }
 
-        //TODO optimize this, make it one database call with two returning values
+        //TODO optimize this, make it one database call with two returning values (without COUNT it is optimized)
         public int GetSelectCount(IBeatmapQueryBuilder queryBuilder)
         {
-            return queryBuilder.BuildBeatmapListCountWithContext(context).Count();
+            return queryBuilder.BuildBeatmapListCountWithContext(context).AsQueryable().Count();
         }
 
         public List<BeatmapEntity> GetBeatmaps(IBeatmapQueryBuilder queryBuilder)
@@ -69,6 +69,11 @@ namespace BeatSorter.Repositories.EntityFramework
         {
             context.Entry(beatmap).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        public object GetBeatmapByBeatSaverId(string beatSaverId)
+        {
+            return context.Beatmap.FirstOrDefault(b => b.BeatSaverId == beatSaverId);
         }
     }
 }

@@ -30,6 +30,10 @@ namespace BeatSorterDatabase.Entities
                 .HasOne(b => b.Uploader)
                 .WithMany(u => u.Beatmaps);
 
+            modelBuilder.Entity<BeatmapEntity>()
+                .HasIndex(b => b.BeatSaverId).IsUnique();
+            modelBuilder.Entity<UploaderEntity>()
+                .HasIndex(u => u.BeatSaverId).IsUnique();
         }
 
     }

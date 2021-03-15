@@ -1,6 +1,6 @@
 using BeatSorterDatabase.Entities;
-using BeatSorter.Repositories.EntityFramework;
-using BeatSorter.Repositories.Interfaces;
+using BeatSorterDatabase.Repositories.EntityFramework;
+using BeatSorterDatabase.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BeatSorterDatabase.External;
+using BeatSorter.Util.HostedServices;
 
 namespace BeatSorter
 {
@@ -34,10 +36,16 @@ namespace BeatSorter
             services.AddControllersWithViews();
 
             services.AddScoped<IBeatmapRepository, BeatmapRepository>();
+            services.AddScoped<IDifficultyRepository, DifficultyRepository>();
+            services.AddScoped<IUploaderRepository, UploaderRepository>();
+
+            services.AddHostedService<CheckBeatSaverAPI>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -63,7 +71,7 @@ namespace BeatSorter
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
-            });
+            });            
         }
     }
 }

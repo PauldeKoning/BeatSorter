@@ -1,4 +1,4 @@
-﻿using BeatSorter.Repositories.Interfaces;
+﻿using BeatSorterDatabase.Repositories.Interfaces;
 using BeatSorter.Util.Converters;
 using BeatSorter.ViewModels;
 using BeatSorterDatabase.Util;
@@ -36,7 +36,7 @@ namespace BeatSorter.Controllers
             }
             BeatmapConverter.ToModel(beatmapRepository.GetBeatmaps(queryBuilder)).ForEach(b => beatmaps.Add(new BeatmapViewModel(b)));
 
-            int pageAmount = (int)Math.Ceiling(Convert.ToDouble(beatmapRepository.GetSelectCount(queryBuilder) / amountPerPage));
+            int pageAmount = (int)Math.Ceiling((float)beatmapRepository.GetSelectCount(queryBuilder) / amountPerPage);
             var beatmapListVM = new BeatmapListViewModel(pageAmount, page, beatmaps);
             return View(beatmapListVM);
         }

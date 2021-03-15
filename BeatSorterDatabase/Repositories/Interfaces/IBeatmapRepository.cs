@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BeatSorter.Repositories.Interfaces
+namespace BeatSorterDatabase.Repositories.Interfaces
 {
     public interface IBeatmapRepository
     {
@@ -16,5 +16,6 @@ namespace BeatSorter.Repositories.Interfaces
         int InsertBeatmap(BeatmapEntity beatmap);
         void DeleteBeatmap(BeatmapEntity beatmap);
         void UpdateBeatmap(BeatmapEntity beatmap);
+        object GetBeatmapByBeatSaverId(string beatSaverId);
     }
 }

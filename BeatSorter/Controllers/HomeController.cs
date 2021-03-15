@@ -1,4 +1,4 @@
-﻿using BeatSorter.Repositories.Interfaces;
+﻿using BeatSorterDatabase.Repositories.Interfaces;
 using BeatSorter.Util.Converters;
 using BeatSorter.Models;
 using Microsoft.AspNetCore.Mvc;

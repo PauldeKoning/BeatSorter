@@ -63,7 +63,7 @@ namespace BeatSorter.ViewModels
         {
             get
             {
-                return $"{Math.Floor(Convert.ToDecimal(Duration / 60))}:{Duration % 60:00}";
+                return $"{Math.Floor((float)Duration / 60)}:{Duration % 60:00}";
             }
         }
 
@@ -72,7 +72,7 @@ namespace BeatSorter.ViewModels
             get
             {
                 return Description
-                    .Replace(Environment.NewLine, "<br>");
+                    .Replace("\n", "<br>").Replace("\r\n", "<br>");
             }
         }
 

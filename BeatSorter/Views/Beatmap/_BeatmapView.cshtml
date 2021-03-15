@@ -8,7 +8,7 @@
         </div>
         <div class="col-lg-7 col-xl-8 col-sm-12 col-md-6 d-flex flex-column">
             <div class="card-body">
-                <h4 class="card-title">@Html.ActionLink(Model.Title, "Detail", "Beatmap", new { id = Model.Id })</h4>
+                <h5 class="card-title"><b>@Html.ActionLink(Model.Title, "Detail", "Beatmap", new { id = Model.Id })</b></h5>
                 <table class="text-muted">
                     <tr>
                         <td>Uploaded by:</td>
@@ -67,7 +67,7 @@
             <div>
                 <h5 class="pl-2">
                     <span id="SongView_@(Model.Id)_difficulty_easy" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-success @(Model.ContainsDifficulty("standard", "easy") ? "" : "badge-not-present")">Easy</span>
-                    <span id="SongView_@(Model.Id)_difficulty_medium" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary @(Model.ContainsDifficulty("standard", "medium") ? "" : "badge-not-present")">Medium</span>
+                    <span id="SongView_@(Model.Id)_difficulty_normal" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-secondary @(Model.ContainsDifficulty("standard", "normal") ? "" : "badge-not-present")">Normal</span>
                     <span id="SongView_@(Model.Id)_difficulty_hard" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-primary @(Model.ContainsDifficulty("standard", "hard") ? "" : "badge-not-present")">Hard</span>
                     <span id="SongView_@(Model.Id)_difficulty_expert" class="SongView_@(Model.Id)_difficulty  p-2 badge badge-danger @(Model.ContainsDifficulty("standard", "expert") ? "" : "badge-not-present")">Expert</span>
                     <span id="SongView_@(Model.Id)_difficulty_expertplus" class="SongView_@(Model.Id)_difficulty  p-2 badge text-white @(Model.ContainsDifficulty("standard", "expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>

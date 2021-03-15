@@ -83,7 +83,7 @@ else
                             <td>
                                 <h5 class="m-0">
                                     <span class="p-2 badge badge-success @(Model.ContainsDifficulty(difficulty.Key, "easy") ? "" : "badge-not-present")">Easy</span>
-                                    <span class="p-2 badge badge-secondary @(Model.ContainsDifficulty(difficulty.Key, "medium") ? "" : "badge-not-present")">Medium</span>
+                                    <span class="p-2 badge badge-secondary @(Model.ContainsDifficulty(difficulty.Key, "normal") ? "" : "badge-not-present")">Normal</span>
                                     <span class="p-2 badge badge-primary @(Model.ContainsDifficulty(difficulty.Key, "hard") ? "" : "badge-not-present")">Hard</span>
                                     <span class="p-2 badge badge-danger @(Model.ContainsDifficulty(difficulty.Key, "expert") ? "" : "badge-not-present")">Expert</span>
                                     <span class="p-2 badge badge-success text-white @(Model.ContainsDifficulty(difficulty.Key, "expertplus") ? "" : "badge-not-present")" style="background-color: #8f48db;">Expert+</span>
