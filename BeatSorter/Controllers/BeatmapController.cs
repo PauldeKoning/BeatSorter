@@ -34,6 +34,7 @@ namespace BeatSorter.Controllers
             {
                 queryBuilder.WithSongTitle(songTitle);
             }
+            queryBuilder.WithOrderByUploadDate();
             BeatmapConverter.ToModel(beatmapRepository.GetBeatmaps(queryBuilder)).ForEach(b => beatmaps.Add(new BeatmapViewModel(b)));
 
             int pageAmount = (int)Math.Ceiling((float)beatmapRepository.GetSelectCount(queryBuilder) / amountPerPage);

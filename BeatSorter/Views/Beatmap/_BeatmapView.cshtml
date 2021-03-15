@@ -42,13 +42,13 @@
                     {
                         <button id="SongView_@(Model.Id)_@("onesaber")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("onesaber")))'>One Saber</button>
                     }
-                    @if (Model.DifficultyTypes.Contains("360"))
+                    @if (Model.DifficultyTypes.Contains("360degree"))
                     {
-                        <button id="SongView_@(Model.Id)_@("360")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("360")))'>360&deg;</button>
+                        <button id="SongView_@(Model.Id)_@("360degree")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("360degree")))'>360&deg;</button>
                     }
-                    @if (Model.DifficultyTypes.Contains("90"))
+                    @if (Model.DifficultyTypes.Contains("90degree"))
                     {
-                        <button id="SongView_@(Model.Id)_@("90")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90")))'>90&deg;</button>
+                        <button id="SongView_@(Model.Id)_@("90degree")" class="SongView_@(Model.Id) btn btn-info btn-sm badge-difficulty-type" data-difficulties='@Html.Raw(Json.Serialize(Model.GetAvailableDifficulties("90degree")))'>90&deg;</button>
                     }
                     @if (Model.DifficultyTypes.Contains("noarrows"))
                     {
