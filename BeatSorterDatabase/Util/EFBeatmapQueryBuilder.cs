@@ -18,6 +18,8 @@ namespace BeatSorterDatabase.Util
 
         private bool orderByUploadDate;
 
+        private int uploaderId;
+
         public void WithPagination(int amountPerPage, int page)
         {
             if (page < 0) page = 0;
@@ -41,6 +43,11 @@ namespace BeatSorterDatabase.Util
             orderByUploadDate = true;
         }
 
+        public void WithUploader(int uploaderId)
+        {
+            this.uploaderId = uploaderId;
+        }
+
         private IEnumerable<BeatmapEntity> BuildList(BeatSorterContext context)
         {
             var query = context.Beatmap
@@ -50,6 +57,11 @@ namespace BeatSorterDatabase.Util
             if (orderByUploadDate)
             {
                 query = query.AsQueryable().OrderByDescending(b => b.UploadDate).AsQueryable();
+            }
+
+            if (uploaderId != 0)
+            {
+                query = query.AsQueryable().Where(b => b.Uploader.Id == uploaderId).AsQueryable();
             }
 
             if (songAuthor != null)

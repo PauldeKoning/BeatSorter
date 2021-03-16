@@ -1,0 +1,27 @@
+﻿@model (string, BeatSorter.ViewModels.BeatmapListViewModel)
+@{
+    ViewData["Title"] = "Mapper";
+}
+
+@if (Model.Item1 == null || Model.Item2.Beatmaps.Count() == 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+                <h6 class="m-0"><b>User not found or user has no assigned beatmaps. <a href="/Beatmap/List">View beatmaps uploaded by anyone.</a></b></h6>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                <h6 class="m-0"><b>Viewing beatmaps uploaded by @Model.Item1. <a href="/Beatmap/List">View beatmaps uploaded by anyone.</a></b></h6>
+            </div>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("List", Model.Item2)
+}

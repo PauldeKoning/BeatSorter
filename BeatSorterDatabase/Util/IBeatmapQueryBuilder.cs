@@ -12,6 +12,7 @@ namespace BeatSorterDatabase.Util
         public void WithSongAuthor(string author);
         public void WithSongTitle(string title);
         public void WithPagination(int amountPerPage, int page);
+        public void WithUploader(int uploaderId);
         public IEnumerable<BeatmapEntity> BuildBeatmapListWithContext(BeatSorterContext context);
         public IEnumerable<BeatmapEntity> BuildBeatmapListCountWithContext(BeatSorterContext context);
     }

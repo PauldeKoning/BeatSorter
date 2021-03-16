@@ -18,7 +18,7 @@
                 <table class="text-muted">
                     <tr>
                         <td>Uploaded by:</td>
-                        <td class="pl-3"><b>@Html.ActionLink(Model.Uploader.Username, "Detail", "Uploader", new { id = Model.Id })</b></td>
+                        <td class="pl-3"><b>@Html.ActionLink(Model.Uploader.Username, "Uploader", "Beatmap", new { id = Model.Uploader.Id })</b></td>
                     </tr>
                     <tr>
                         <td>Created by:</td>
