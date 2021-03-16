@@ -41,7 +41,7 @@ namespace BeatSorterDatabase.External
                 if (beatmapRepository.GetBeatmapByBeatSaverId(api._id) != null)
                 {
                     Console.WriteLine(" -- FINISHED BEATSAVER DATA HANDLING (BEATMAP ALREADY FOUND) --");
-                    return; ; ; //TODO change for production
+                    return;
                 }
 
                 var uploader = uploaderRepository.GetUploaderByBeatSaverId(api.uploader._id);

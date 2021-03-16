@@ -14,10 +14,23 @@ namespace BeatSorter.Util.View
     {
 
         //Taken from: https://stackoverflow.com/questions/42022311/asp-net-mvc-create-action-link-preserve-query-string
-        public static string Current(this IUrlHelper helper, object substitutes)
+        public static string Current(this IUrlHelper helper, object substitutes, string controller = null, string action = null)
         {
             RouteValueDictionary routeData = new RouteValueDictionary(helper.ActionContext.RouteData.Values);
             IQueryCollection queryString = helper.ActionContext.HttpContext.Request.Query;
+
+
+            if (controller != null)
+            {
+                routeData.Remove("controller");
+                routeData.Add("controller", controller);
+            }
+            
+            if (action != null)
+            {
+                routeData.Remove("action");
+                routeData.Add("action", action);
+            }
 
             //add query string parameters to the route data
             foreach (var param in queryString)

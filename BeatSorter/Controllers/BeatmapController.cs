@@ -7,16 +7,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BeatSorter.Models;
 
 namespace BeatSorter.Controllers
 {
     public class BeatmapController : Controller
     {
         private readonly IBeatmapRepository beatmapRepository;
+        private readonly IUploaderRepository uploaderRepository;
 
-        public BeatmapController(IBeatmapRepository beatmapRepository)
+        public BeatmapController(IBeatmapRepository beatmapRepository, IUploaderRepository uploaderRepository)
         {
             this.beatmapRepository = beatmapRepository;
+            this.uploaderRepository = uploaderRepository;
         }
 
         public IActionResult List(int page, string songAuthor, string songTitle)
@@ -45,8 +48,9 @@ namespace BeatSorter.Controllers
             int pageAmount = (int)Math.Ceiling((float)beatmapRepository.GetSelectCount(queryBuilder) / amountPerPage);
             var beatmapListVM = new BeatmapListViewModel(pageAmount, page, beatmaps);
 
+            Uploader uploader = UploaderConverter.ToModel(uploaderRepository.GetUploaderById(id));
             string username = null;
-            if (beatmaps.FirstOrDefault() != null) username = beatmaps.FirstOrDefault().Uploader.Username;
+            if (uploader != null) username = uploader.Username;
             return View((username, beatmapListVM));
         }
 

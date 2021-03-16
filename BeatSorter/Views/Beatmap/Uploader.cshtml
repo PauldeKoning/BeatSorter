@@ -1,24 +1,25 @@
 ﻿@model (string, BeatSorter.ViewModels.BeatmapListViewModel)
+@using BeatSorter.Util.View
 @{
     ViewData["Title"] = "Mapper";
 }
 
-@if (Model.Item1 == null || Model.Item2.Beatmaps.Count() == 0)
+@if (Model.Item1 == null)
 {
     <div class="row">
         <div class="col-12">
-            <div class="alert alert-danger" role="alert">
-                <h6 class="m-0"><b>User not found or user has no assigned beatmaps. <a href="/Beatmap/List">View beatmaps uploaded by anyone.</a></b></h6>
+            <div class="alert alert-warning" role="alert">
+                <h6 class="m-0"><b>User not found. <a href="@Url.Current(new { }, "Beatmap", "List")">View beatmaps uploaded by anyone.</a></b></h6>
             </div>
         </div>
     </div>
 }
 else
-{
+{ //TODO maintain search on link underneath
     <div class="row">
         <div class="col-12">
             <div class="alert alert-info" role="alert">
-                <h6 class="m-0"><b>Viewing beatmaps uploaded by @Model.Item1. <a href="/Beatmap/List">View beatmaps uploaded by anyone.</a></b></h6>
+                <h6 class="m-0">Viewing beatmaps uploaded by <b>@Model.Item1</b>. <a href="@Url.Current(new { Id = "" }, "Beatmap", "List")">View beatmaps uploaded by anyone.</a></h6>
             </div>
         </div>
     </div>

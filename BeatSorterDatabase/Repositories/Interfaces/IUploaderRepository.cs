@@ -9,5 +9,6 @@ namespace BeatSorterDatabase.Repositories.Interfaces
     {
         public void InsertUploader(UploaderEntity uploader);
         public UploaderEntity GetUploaderByBeatSaverId(string beatSaverId);
+        public UploaderEntity GetUploaderById(int id);
     }
 }

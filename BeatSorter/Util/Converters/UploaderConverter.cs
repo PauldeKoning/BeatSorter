@@ -22,6 +22,7 @@ namespace BeatSorter.Util.Converters
 
         public static Uploader ToModel(UploaderEntity uploader)
         {
+            if (uploader == null) return null;
             return new Uploader()
             {
                 Id = uploader.Id,

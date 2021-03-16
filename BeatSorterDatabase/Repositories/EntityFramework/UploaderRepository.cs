@@ -16,6 +16,11 @@ namespace BeatSorterDatabase.Repositories.EntityFramework
             this.context = context;
         }
 
+        public UploaderEntity GetUploaderById(int id)
+        {
+            return context.Uploader.FirstOrDefault(u => u.Id == id);
+        }
+
         public UploaderEntity GetUploaderByBeatSaverId(string beatSaverId)
         {
             return context.Uploader.FirstOrDefault(u => u.BeatSaverId == beatSaverId);
